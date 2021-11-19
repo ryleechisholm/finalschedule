@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Profile Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        overflow: hidden;
+        background-color: #162b32;
+        border: 1px solid #FBC532;
+      }
+
+      nav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+
+      .top {
+        padding: 1em;
+        border-bottom: solid #ff4838 2px;
+        text-align: center;
+        font-size: 40px;
+      }
+
+      .heading {
+        font-size: 30px;
+        color: white;
+      }
+
+      .text {
+          color: white;
+      }
+
+      .filloutbox {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .updatebtn {
+        height: 35px;
+        font-size: 20px;
+        border-radius: 25px;
+        background-color: #FBC532;
+      }
+
+      .text {
+        font-size: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="sticky">
+      <a href="{% url 'home'%}">Home</a>
+      <a href="{% url 'messagepage' %}">Chat</a>
+      <a href="{% url 'profile' %}">My Profile</a>
+      <a href="{% url 'logout' %}">Log Out</a>
+    </nav>
+    <div class='top'>
+      <p class='heading'>Update Profile Information</p>
+    </div>
+    <div class="filloutbox">
+      <form method="POST" action="{% url 'updateprofile' %}">
+          {% csrf_token %}
+            <p class="text">Name:</p>
+            <p class="textbox">{{form.name}}</p>
+            <p class="text">Email:</p>
+            <p class="textbox">{{form.email}}</p>
+            <p class="text">Phone Number:</p>
+            <p class="textbox">{{form.phone}}</p>  
+          <input class="updatebtn" type="submit" value="Update Info" />
+      </form>
+    </div>
+  </body>
+</html>

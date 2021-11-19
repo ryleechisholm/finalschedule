@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Profile Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        overflow: hidden;
+        background-color: #162b32;
+        border: 1px solid #FBC532;
+      }
+
+      nav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+
+      .heading {
+        color: white;
+        font-size: 40px;
+        text-align: center;
+        border-bottom: solid #ED8227 2px;
+        padding-bottom: 1em;
+      }
+
+      .info {
+        color: white;
+        font-size: 20px;
+
+      }
+
+      .box {
+        font-size: 23px;
+        background-color: #D62819;
+        border: solid #D62819 2px;
+        border-radius: 25px;
+        padding: 1.8em;
+        margin: 4em;
+      }
+
+      .box2 {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .upbtn {
+        background-color: white;
+        color: black;
+        height: 40px;
+        border-radius: 25px;
+        padding: 7px;
+        font-size: 20px;
+
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="sticky">
+      <a href="{% url 'home'%}">Home</a>
+      <a href="{% url 'messagepage' %}">Chat</a>
+      <a href="{% url 'profile' %}">My Profile</a>
+      <a href="{% url 'logout' %}">Log Out</a>
+    </nav>
+    <p class='heading'>{{current_user.name}}</p>
+    <div class='box'>
+      <p class='info'>Job: {{current_user.job}}</p>
+      <p class='info'>Email: {{current_user.email}}</p>
+      <p class='info'>Phone Number: {{current_user.phone}}</p>
+    </div>
+    <div class='box2'>
+      <button class='upbtn'><a href="{% url 'updateprofile' %}">Update Info</a></button>
+    </div>
+  </body>
+</html>

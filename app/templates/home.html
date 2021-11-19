@@ -1,0 +1,138 @@
+{% load mathfilters %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Home Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+      }
+
+      nav {
+        overflow: hidden;
+        background-color: #162b32;
+        border: 1px solid #FBC532;
+      }
+
+      nav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+
+      .this_week {
+        float: center;
+        background-color: white;
+        margin: 2em;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      .item {
+        height: 70px;
+        width: 160px;
+        text-align: center;
+        border: 1px solid black;
+        color: black;
+      }
+
+      .heading {
+        background-color: #ED8227;
+      }
+
+      .namebox {
+        background-color: #EBD7B1;
+        height: 70px;
+        width: 160px;
+        text-align: center;
+        border: 1px solid black;
+        color: black;
+      }
+
+      .button {
+        margin: 1em;
+        padding: .3em;
+        text-align: center;
+      }
+
+      .btnnn {
+        background-color: #FBC532;
+        color: black;
+        font-size: 23px;
+      }
+
+      .notnav {
+        margin: 3em;
+      }
+
+      .item1 {
+        background-color: #D62819;
+        height: 70px;
+        width: 160px;
+        text-align: center;
+        border: 1px solid black;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="sticky">
+      <a href="{% url 'home'%}">Home</a>
+      <a href="{% url 'messagepage' %}">Chat</a>
+      <a href="{% url 'profile' %}">My Profile</a>
+      <a href="{% url 'logout' %}">Log Out</a>
+    </nav>
+    <div class='notnav'>
+      <table class="this_week">
+        <tr class="heading">
+          <th class="item1"></th>
+          <th class="item">Sunday</th>
+          <th class="item">Monday</th>
+          <th class="item">Tuesday</th>
+          <th class="item">Wednesday</th>
+          <th class="item">Thursday</th>
+          <th class="item">Friday</th>
+          <th class="item">Saturday</th>
+        </tr>
+        {% for employee in empoyees %}
+        {% with my_list=employee.emp_list %}
+        <tr>
+          <td class="namebox">{{employee.name}}</td>
+          <td class="item">{{my_list.0}}</td>
+          <td class="item">{{my_list.1}}</td>
+          <td class="item">{{my_list.2}}</td>
+          <td class="item">{{my_list.3}}</td>
+          <td class="item">{{my_list.4}}</td>
+          <td class="item">{{my_list.5}}</td>
+          <td class="item">{{my_list.6}}</td>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+      </table>
+      {% if request.user.is_staff %}
+      <div class='button'>
+        <button class='btnnn'><a href="{% url 'make-schedule' %}">New Schedule</a></button>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

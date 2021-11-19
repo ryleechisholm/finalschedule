@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Login Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        color: white;
+      }
+
+      nav a {
+        float: right;
+        color: white;
+        text-align: center;
+        padding: 15px 27px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+
+      .notnav {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .loginbox {
+        background-color: #ED8227;
+        padding: 1.5em;
+        height: 400px;
+        width: 400px;
+        margin-top: 5em;
+        border-radius: 25px;
+      }
+
+      .heading {
+        text-align: center;
+        color: black;
+        font-size: 3em;
+        margin: 0.5em;
+      }
+
+      .filloutbox {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+
+      .box {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+
+      .label {
+        font-size: 25px;
+        margin: 0.8em;
+      }
+
+      .form-control {
+        margin: 0.8em;
+        padding: 0;
+        opacity: 0.4;
+        background-color: white;
+        height: 25px;
+        width: 180px;
+      }
+
+      .loginbtn {
+        float: center;
+        height: 40px;
+        background-color: #D62819;
+        color: white;
+        padding: 6px;
+        font-size: 25px;
+        margin-top: 0.8em;
+        border-radius: 25px;
+      }
+
+      .loginbtn:hover {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </nav>
+    <div class="notnav">
+      <div class="loginbox">
+        <h3 class="heading">Log In</h3>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="box">
+            <p class="label">Username:</p>
+            <input
+              type="text"
+              name="username"
+              placeholder=""
+              class="form-control"
+            />
+            <p class="label">Password:</p>
+            <input
+              type="text"
+              name="password"
+              placeholder=""
+              class="form-control"
+            />
+          </div>
+          <button class="loginbtn">Log In</button>
+        </form>
+
+        {{form.errors}}
+      </div>
+    </div>
+  </body>
+</html>

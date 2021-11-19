@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Login Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        color: white;
+        background-color: yellow;
+      }
+
+      nav a {
+        float: right;
+        color: white;
+        text-align: center;
+        padding: 15px 27px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+
+      .notnav {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .signbox {
+        background-color: #ED8227;
+        padding: 1.5em;
+        height: 460px;
+        width: 480px;
+        margin-top: 5em;
+        border-radius: 25px;
+      }
+
+      .heading {
+        text-align: center;
+        color: black;
+        font-size: 3em;
+        margin: 0.5em;
+      }
+
+      .filloutbox {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+
+      .text {
+        margin: 0;
+        padding: 0;
+        font-size: 23px;
+      }
+
+      .textbox {
+        margin: 0.8em;
+        padding: 0;
+        opacity: 0.4;
+        color: white;
+        height: 27px;
+      }
+
+      .signupbtn {
+        float: center;
+        height: 32px;
+        background-color: #D62819;
+        color: white;
+        padding: 6px;
+        font-size: 20px;
+        border-radius: 25px;
+      }
+
+      .signupbtn:hover {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'login_page' %}">Log in</a>
+    </nav>
+    <div class="notnav">
+      <div class="signbox">
+        <h3 class="heading">Sign Up</h3>
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="filloutbox">
+            <p class="text">{{form.username.label}}:</p>
+            <p class="textbox">{{form.username}}</p>
+            <p class="text">{{form.email.label}}:</p>
+            <p class="textbox">{{form.email}}</p>
+            <p class="text">{{form.password1.label}}:</p>
+            <p class="textbox">{{form.password1}}</p>
+            <p class="text">{{form.password2.label}}:</p>
+            <p class="textbox">{{form.password2}}</p>
+          </div>  
+          <input class="signupbtn" type="submit" value="Sign Up" />
+        </form>
+
+        {{form.errors}}
+      </div>
+    </div>
+  </body>
+</html>

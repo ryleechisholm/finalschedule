@@ -1,0 +1,126 @@
+{% load mathfilters %} {% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <title>Home Page</title>
+    <style>
+      body {
+        background-color: #162b32;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        overflow: hidden;
+        background-color: #162b32;
+        border: 1px solid #FBC532;
+      }
+
+      nav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 23px;
+      }
+
+      nav a:hover {
+        background-color: #FBC532;
+        color: black;
+      }
+      
+      .msgbox {
+        background-color: white;
+        margin-left: 150px;
+        margin-right: 250px;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        padding: 1.5em;
+        border-radius: 25px;
+        border: 4px solid #EBD7B1;
+        
+      }
+
+      .chat {
+        font-size: 40px;
+        color: white;
+        text-align: center;
+        border-bottom: 2px solid #D62819;
+        padding-bottom: 1em;
+      }
+
+      .top {
+        margin-bottom: 2em;
+        justify-content: center;
+      }
+
+      .yass {
+        background-color: #ff4838;
+        width: 2px;
+      }
+
+      .username {
+        font-size: 20px;
+        color: black;
+      }
+
+      .cont {
+        font-size: 17px;
+        color; black;
+      }
+
+      .leform {
+        text-align:center;
+        background-color: #ED8227;
+        width: 400px;
+        margin: 8em;
+        border-radius: 25px;
+      }
+
+      .formbox {
+        margin: 1em;
+        padding-top: 1em;
+      }
+
+      .postbtn{
+        margin: 1em;
+        padding: 6px;
+        border-radius: 25px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="sticky">
+      <a href="{% url 'home'%}">Home</a>
+      <a href="{% url 'messagepage' %}">Chat</a>
+      <a href="{% url 'profile' %}">My Profile</a>
+      <a href="{% url 'logout' %}">Log Out</a>
+    </nav>
+    <div class="top">
+      <p class='chat'>Chat</p>
+      <div class='leform'>
+        <form class="formbox" action="" method="POST">
+          {% csrf_token %}
+            <p class='textbox'>{{form.content}}</p>
+            <input class="postbtn" type="submit" value="Post" />
+          </form>
+      </div>
+    </div>
+    <div class='all_chat'>
+    {% for message in chat_messages %}
+    <div class='msgbox'>
+      <p class="username">{{message.user}}</p>
+      <p class="cont">{{message.content}}</p>
+    </div>
+    {% endfor %}
+  </body>
+</html>
